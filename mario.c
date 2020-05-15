@@ -8,7 +8,7 @@ int main(void)//main method
     int h = positive();
     for (int i = 1 ; i<=h ; i++)
     {
-        for ( int c = h ; c > (i-1) ; c--)
+        for ( int c = i ; c <= (h-1) ; c++)
         {
             printf(" ");
             
