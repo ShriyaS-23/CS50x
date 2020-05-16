@@ -5,8 +5,8 @@ float positive(void);
 
 int main(void)
 {
-    int change = positive();
-    int cents = change * 100;
+    float change = positive();
+    float cents = change * 100;
     int coins = 0;
     
     while(cents!=0)
