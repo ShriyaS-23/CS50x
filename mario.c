@@ -17,6 +17,11 @@ int main(void)//main method
         {
             printf("#");
         }
+        printf(" ");
+        for (int x = 1 ; x <= i ; x++)
+        {
+            printf("#");
+        }
         
         printf("\n");
     }
