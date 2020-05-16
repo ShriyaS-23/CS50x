@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <cs50.h>
+#include <math.h>
 
 float positive(void);
 
 int main(void)
 {
     float change = positive();
-    float cents = change * 100;
+    float cents = round (change * 100);
     int coins = 0;
     
     while(cents!=0)
@@ -14,25 +15,25 @@ int main(void)
         if (cents>25)
         {
             coins++;
-            cents = cents - 2500;
+            cents = cents - 25;
         }
         else if (cents>10)
         {
             coins++;
-            cents -= 1000;
+            cents -= 10;
         }
         else if (cents>5)
         {
             coins++;
-            cents -= 500;
+            cents -= 5;
         }
         else
         {
             coins++;
-            cents -= 100;
+            cents -= 1;
         }
     }
-    printf("%i",coins);
+    printf("%i\n",coins);
 }
 
 
