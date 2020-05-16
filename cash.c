@@ -14,22 +14,22 @@ int main(void)
         if (cents>25)
         {
             coins++;
-            cents = cents - 25;
+            cents = cents - 2500;
         }
         else if (cents>10)
         {
             coins++;
-            cents -= 10;
+            cents -= 1000;
         }
         else if (cents>5)
         {
             coins++;
-            cents -= 5;
+            cents -= 500;
         }
         else
         {
             coins++;
-            cents -= 1;
+            cents -= 100;
         }
     }
     printf("%i",coins);
