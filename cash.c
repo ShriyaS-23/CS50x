@@ -7,7 +7,7 @@ float positive(void);
 int main(void)
 {
     float change = positive();
-    float cents = round (change * 100);
+    int cents = round (change * 100);
     int coins = 0;
     
     while(cents!=0)
@@ -20,17 +20,17 @@ int main(void)
         else if (cents>10)
         {
             coins++;
-            cents -= 10;
+            cents = cents - 10;
         }
         else if (cents>5)
         {
             coins++;
-            cents -= 5;
+            cents =  cents - 5;
         }
         else
         {
             coins++;
-            cents -= 1;
+            cents = cents - 1;
         }
     }
     printf("%i\n",coins);
