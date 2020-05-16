@@ -14,7 +14,7 @@ int main(void)
         if (cents>25)
         {
             coins++;
-            cents -= 25;
+            cents = cents - 25;
         }
         else if (cents>10)
         {
@@ -43,6 +43,6 @@ float positive(void)//method to get positive float
     {
         n = get_float("Change owed: ");//taking input
     }
-    while(n<1);
+    while(n<0);
     return n;//returning n
 }
