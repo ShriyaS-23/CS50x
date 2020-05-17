@@ -35,10 +35,10 @@ int main(void)
     long ans = k + s;
     if (ans%10 == 0)
     {
-        printf("VISA");
+        printf("MASTERCARD\n");
     }
     else
     {
-        printf("INVALID");
+        printf("INVALID\n");
     }
 }
