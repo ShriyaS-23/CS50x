@@ -12,17 +12,17 @@ int main(void)
     
     while(cents!=0)
     {
-        if (cents>25)
+        if (cents>=25)
         {
             coins++;
             cents = cents - 25;
         }
-        else if (cents>10)
+        else if (cents>=10)
         {
             coins++;
             cents = cents - 10;
         }
-        else if (cents>5)
+        else if (cents>=5)
         {
             coins++;
             cents =  cents - 5;
