@@ -46,19 +46,19 @@ int main (void)
     
     if (s%10 == 0 && (t/10000000000000 == 34 || t/10000000000000 == 37))
     {
-        printf("AMEX");
+        printf("AMEX\n");
     }
     else if (s%10 == 0 && (t/100000000000000 == 51 || t/100000000000000 == 52 || t/100000000000000 == 53 || t/100000000000000 == 54 || t/100000000000000 == 55))
     {
-        printf("MASTERCARD");
+        printf("MASTERCARD\n");
     }
     else if (s%10 == 0 && (t/1000000000000 == 4 || t/1000000000000000 == 4))
     {
-        printf("VISA");
+        printf("VISA\n");
     }
     else
     {
-        printf("INVALID");
+        printf("INVALID\n");
     }
     
 }
