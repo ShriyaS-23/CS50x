@@ -12,25 +12,43 @@ int main (void)
     long y = 0;
     while (x != 0)
     {
-        x = n%100;
-        y = y + (x * 2);
-        n = n/100;
+        long b = (x%100 - x%10)/10 ;
+        x = x/100;
+        long c = b*2;
+        if (c/10 == 0)
+        {
+            y = y + c;
+        }
+        else
+        {
+            while(c != 0)
+            {
+                long f = c%10;
+                y = y + f;
+                c = c/10;
+            }
+        }
     }
-    long s1 = 0;
+    /*long s1 = 0;
     while (y != 0)
     {
         s1 = s1 + y%10;
         y = y/10;
-    }
+    }*/
     
     long s2 = 0;
     while (q != 0)
     {
         s2 = s2 + q%10;
-        q = q/10;
+        q = q/100;
     }
     
-    long s = s1 + s2;
+    long s = y + s2;
+    long h = t/1000000000000;
+    long z = t/1000000000000000;
+    printf("%ld\n", h);
+    printf("%ld\n", z);
+    
     
     if (s%10 == 0 && (t/10000000000000 == 34 || t/10000000000000 == 37))
     {
@@ -40,7 +58,7 @@ int main (void)
     {
         printf("MASTERCARD");
     }
-    else if (s%10 == 0 && (t/100000000000 == 4 || t/100000000000000 == 4))
+    else if (s%10 == 0 && (t/1000000000000 == 4 || t/1000000000000000 == 4))
     {
         printf("VISA");
     }
