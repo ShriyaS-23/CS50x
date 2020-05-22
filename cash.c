@@ -7,22 +7,22 @@ float positive(void);
 int main(void)
 {
     float change = positive();
-    int cents = round (change * 100);
+    int cents = round(change * 100);
     int coins = 0;
     
-    while(cents!=0)
+    while (cents != 0)
     {
-        if (cents>=25)
+        if (cents >= 25)
         {
             coins++;
             cents = cents - 25;
         }
-        else if (cents>=10)
+        else if (cents >= 10)
         {
             coins++;
             cents = cents - 10;
         }
-        else if (cents>=5)
+        else if (cents >= 5)
         {
             coins++;
             cents =  cents - 5;
@@ -33,7 +33,7 @@ int main(void)
             cents = cents - 1;
         }
     }
-    printf("%i\n",coins);
+    printf("%i\n", coins);
 }
 
 
@@ -44,6 +44,6 @@ float positive(void)//method to get positive float
     {
         n = get_float("Change owed: ");//taking input
     }
-    while(n<0);
+    while (n < 0);
     return n;//returning n
 }
