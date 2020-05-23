@@ -16,7 +16,7 @@ int main(void)
     
     int read = round (0.0588 * l - 0.296 * s - 15.8);
     
-    if (read) < 1)
+    if (read < 1)
     {
         printf("Before Grade 1\n");
     }
