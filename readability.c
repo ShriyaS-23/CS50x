@@ -18,7 +18,7 @@ int main(void)
     
     float S = (float)s / (float)w * 100;
     
-    int read = round (0.0588 * L - 0.296 * S - 15.8);
+    int read = round(0.0588 * L - 0.296 * S - 15.8);//Coleman-Liau Index Calculation
     
     if (read < 1)
     {
@@ -35,10 +35,10 @@ int main(void)
     
 }
 
-int count_letters(string t)
+int count_letters(string t)//method to count number of letters
 {
     int n = 0;
-    for(int i = 0, x = strlen(t); i <= x; i++)
+    for (int i = 0, x = strlen(t); i <= x; i++)
     {
         if ((t[i] >= 'a' && t[i] <= 'z') || (t[i] >= 'A' && t[i] <= 'Z'))
         {
@@ -48,20 +48,20 @@ int count_letters(string t)
     return n;
 }
 
-int count_words(string t)
+int count_words(string t)//method to count number of words
 {
     int n = 0;
-    for(int i = 0, x = strlen(t); i <= x; i++)
+    for (int i = 0, x = strlen(t); i <= x; i++)
     {
         if (t[i] == ' ')
         {
             n++;
         }
     }
-    return n+1;
+    return n + 1;
 }
 
-int count_sentences(string t)
+int count_sentences(string t)//method to count number of sentences
 {
     int n = 0;
     for (int i = 0, x = strlen(t); i <= x; i++)
