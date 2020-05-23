@@ -14,7 +14,11 @@ int main(void)
     int w = count_words(text);
     int s = count_sentences(text);
     
-    int read = round (0.0588 * l - 0.296 * s - 15.8);
+    float L = (float)l / (float)w * 100;
+    
+    float S = (float)s / (float)w * 100;
+    
+    int read = round (0.0588 * L - 0.296 * S - 15.8);
     
     if (read < 1)
     {
