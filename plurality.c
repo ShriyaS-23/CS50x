@@ -85,7 +85,7 @@ void print_winner(void)
     int c = 0;
     for (int i = 0; i<9; i++)
     {
-        if (x > candidates[i].votes)
+        if (x < candidates[i].votes)
         {
             x = i;
         }
