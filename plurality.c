@@ -91,16 +91,15 @@ void print_winner(void)
             break;
         }
     }
-    printf("%s \t", candidates[x].name);
+    printf("%s \n", candidates[x].name);
     
     for (int i = 0; i < candidate_count ; i++)
     {
         if (candidates[x].votes == candidates[i].votes && x != i)
         {
-            printf ("%s \t", candidates[i].name);
+            printf ("%s \n", candidates[i].name);
         }
     }
-    printf("\n");
     return;
 }
 
