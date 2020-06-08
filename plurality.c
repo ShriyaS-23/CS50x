@@ -82,20 +82,25 @@ bool vote(string name)
 void print_winner(void)
 {
     int x = 0;
-    int c = -1;
-    for (int i = 0; i<9; i++)
+    int c = 0;
+    for (int i = 0; i < candidate_count ; i++)
     {
         if (x < candidates[i].votes)
         {
             x = i;
+            break;
         }
     }
-    if (c == -1)
+    printf("%s \t", candidates[x].name);
+    
+    for (int i = 0; i < candidate_count ; i++)
     {
-        printf("%s", "Invlaid Vote");
-        return;
+        if (candidates[x].votes == candidates[i].votes && x != i)
+        {
+            printf ("%s \t", candidates[i].name);
+        }
     }
-    printf("%s", candidates[x].name);
+    printf("\n");
     return;
 }
 
