@@ -7,29 +7,44 @@ int main(int argc, string argv[])
 {
     for (int i = 1; i <= argc; i++)
     {
-        if (argc == 2 && (int)argv[i] >= 48 && (int)argv[i] <= 57)   
+        if (argc == 2)   
+        {
+                break;
+        }
+        else
+        {
+            printf("Usage: ./caesar key\n");
+            return 1;
+        }
+    }
+    
+    int j = strlen(argv[1]);
+    for (int i = 0; i < j; i++)
+    {
+        char c = argv[1][i];
+        if ( c >= 48 && c <= 57 )
         {
             continue;
         }
         else
         {
-            printf("Usage: ./caesar key");
-            return 1;
+            printf("Usage: ./caesar key \n");
         }
     }
     
     int key = atoi(argv[1]);
     
-    string pt = get_string("Plaintext: \n");
+    string pt = get_string("Plaintext: ");
     
-    string ct = "";
+    int z = strlen(pt);
     
-    for (int i = 0, x = strlen(pt); i < x; i++)
+    int ct[z];
+    
+    for (int i = 0; i<z ; i++)
     {
         if ((pt[i] >= 'a' && pt[i] <= 'z') || (pt[i] >= 'A' && pt[i] <= 'Z'))
         {
-            char f = pt[i] + key;
-            ct[i] = f;
+            ct[i] = pt[i] + key;
         }
         else
         {
@@ -37,5 +52,12 @@ int main(int argc, string argv[])
         }
     }
     
-    printf("Ciphertext: %s", ct);
+    printf("Ciphertext: ");
+    
+    for (int i = 0; i<z; i++)
+    {
+        printf("%c", (char)ct[i]);   
+    }
+    printf("\n");
+    
 }
