@@ -5,11 +5,11 @@
 
 int main(int argc, string argv[])
 {
-    for (int i = 1; i <= argc; i++)
+    for (int i = 1; i <= argc; i++)//checking for two command line arguments
     {
         if (argc == 2)   
         {
-                break;
+            break;
         }
         else
         {
@@ -18,11 +18,11 @@ int main(int argc, string argv[])
         }
     }
     
-    int j = strlen(argv[1]);
-    for (int i = 0; i < j; i++)
+    int j = strlen(argv[1]);//finding length of key
+    for (int i = 0; i < j; i++)//checking for valid key
     {
         char c = argv[1][i];
-        if ( c >= 48 && c <= 57 )
+        if (c >= 48 && c <= 57)
         {
             continue;
         }
@@ -41,15 +41,15 @@ int main(int argc, string argv[])
     
     int ct[z];
     
-    for (int i = 0; i<z ; i++)
+    for (int i = 0; i < z ; i++)//initiating caesar cipher
     {
-        if ((pt[i] >= 'a' && pt[i] <= 'z') )
+        if ((pt[i] >= 'a' && pt[i] <= 'z'))
         {
-            ct[i] = (((pt[i] -'a') + key) % 26) + 'a';
+            ct[i] = (((pt[i] - 'a') + key) % 26) + 'a';
         }
         else if ((pt[i] >= 'A' && pt[i] <= 'Z'))
         {
-            ct[i] = (((pt[i] -'A') + key) % 26) + 'A';
+            ct[i] = (((pt[i] - 'A') + key) % 26) + 'A';
         }
         else
         {
@@ -59,7 +59,7 @@ int main(int argc, string argv[])
     
     printf("ciphertext: ");
     
-    for (int i = 0; i<z; i++)
+    for (int i = 0; i < z; i++)//printing ciphertext
     {
         printf("%c", (char)ct[i]);   
     }
