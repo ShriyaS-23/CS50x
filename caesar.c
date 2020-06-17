@@ -42,9 +42,13 @@ int main(int argc, string argv[])
     
     for (int i = 0; i<z ; i++)
     {
-        if ((pt[i] >= 'a' && pt[i] <= 'z') || (pt[i] >= 'A' && pt[i] <= 'Z'))
+        if ((pt[i] >= 'a' && pt[i] <= 'z') )
         {
-            ct[i] = pt[i] + key;
+            ct[i] = (((pt[i] -'a') + key) % 26) + 'a';
+        }
+        else if ((pt[i] >= 'A' && pt[i] <= 'Z'))
+        {
+            ct[i] = (((pt[i] -'A') + key) % 26) + 'A';
         }
         else
         {
