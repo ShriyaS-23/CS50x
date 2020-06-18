@@ -82,36 +82,46 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE img[height][width];
+    
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            img[i][j] = image[i][j];
+        }
+    }
+    
     for (int i = 0; i < height; i++)
     {
         for(int j = 0; j < width; j++)
         {
             if (i == 0 && j == 0)//top left corner
          {
-                double blue = image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
+                double blue = img[i][j].rgbtBlue + img[i][j+1].rgbtBlue + img[i+1][j].rgbtBlue + img[i+1][j+1].rgbtBlue;
                 double avgB = blue/4;
                 
-                double green = image[i][j].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
+                double green = img[i][j].rgbtGreen + img[i][j+1].rgbtGreen + img[i+1][j].rgbtGreen + img[i+1][j+1].rgbtGreen;
                 double avgG = blue/4;
                 
-                double red = image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
+                double red = img[i][j].rgbtRed + img[i][j+1].rgbtRed + img[i+1][j].rgbtRed + img[i+1][j+1].rgbtRed;
                 double avgR = red/4;
                 
-                image[i][j].rgbtBlue = round(avgB);
-                image[i][j].rgbtGreen = round(avgG);
-                image[i][j].rgbtRed = round(avgR);
+                img[i][j].rgbtBlue = round(avgB);
+                img[i][j].rgbtGreen = round(avgG);
+                img[i][j].rgbtRed = round(avgR);
             
         }
         else if (i == 0 && j == width - 1)//top right corner
         {
             
-            double blue = image[i][j-1].rgbtBlue + image[i][j].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue;
+            double blue = img[i][j-1].rgbtBlue + img[i][j].rgbtBlue + img[i+1][j-1].rgbtBlue + img[i+1][j].rgbtBlue;
             double avgB = blue/4;
                 
-            double green = image[i][j-1].rgbtGreen + image[i][j].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen;
+            double green = img[i][j-1].rgbtGreen + img[i][j].rgbtGreen + img[i+1][j-1].rgbtGreen + img[i+1][j].rgbtGreen;
             double avgG = green/4;
                 
-            double red = image[i][j-1].rgbtRed + image[i][j].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed;
+            double red = img[i][j-1].rgbtRed + img[i][j].rgbtRed + img[i+1][j-1].rgbtRed + img[i+1][j].rgbtRed;
             double avgR = red/4;
                 
             image[i][j].rgbtBlue = round(avgB);
@@ -121,13 +131,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
         else if (i == height && j == 0)//bottom left corner
         {
-            double blue = image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue;
+            double blue = img[i][j].rgbtBlue + img[i][j+1].rgbtBlue + img[i-1][j].rgbtBlue + img[i-1][j+1].rgbtBlue;
             double avgB = blue/4;
                 
-            double green = image[i][j].rgbtGreen + image[i][j+1].rgbtGreen+ image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen;
+            double green = img[i][j].rgbtGreen + img[i][j+1].rgbtGreen+ img[i-1][j].rgbtGreen + img[i-1][j+1].rgbtGreen;
             double avgG = green/4;
             
-            double red = image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed;
+            double red = img[i][j].rgbtRed + img[i][j+1].rgbtRed + img[i-1][j].rgbtRed + img[i-1][j+1].rgbtRed;
             double avgR = red/4;
             
             image[i][j].rgbtBlue = round(avgB);
@@ -137,13 +147,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
         else if (i == height && j == width - 1)//bottom right corner
         {
-            double blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j-1].rgbtBlue;
+            double blue = img[i][j].rgbtBlue + img[i][j-1].rgbtBlue + img[i-1][j].rgbtBlue + img[i-1][j-1].rgbtBlue;
             double avgB = blue/4;
                 
-            double green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j-1].rgbtGreen;
+            double green = img[i][j].rgbtGreen + img[i][j-1].rgbtGreen + img[i-1][j].rgbtGreen + img[i-1][j-1].rgbtGreen;
             double avgG = green/4;
                 
-            double red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j-1].rgbtRed;
+            double red = img[i][j].rgbtRed + img[i][j-1].rgbtRed + img[i-1][j].rgbtRed + img[i-1][j-1].rgbtRed;
             double avgR = red/4;
             
             image[i][j].rgbtBlue = round(avgB);
@@ -153,13 +163,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
         else if (i == 0 && (j != 0 || j != width - 1))//top edge
         {
-            double blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
+            double blue = img[i][j].rgbtBlue + img[i][j-1].rgbtBlue + img[i][j+1].rgbtBlue + img[i+1][j-1].rgbtBlue + img[i+1][j].rgbtBlue + img[i+1][j+1].rgbtBlue;
             double avgB = blue/6;
                 
-            double green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
+            double green = img[i][j].rgbtGreen + img[i][j-1].rgbtGreen + img[i][j+1].rgbtGreen + img[i+1][j-1].rgbtGreen + img[i+1][j].rgbtGreen + img[i+1][j+1].rgbtGreen;
             double avgG = green/6;
                 
-            double red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
+            double red = img[i][j].rgbtRed + img[i][j-1].rgbtRed + img[i][j+1].rgbtRed + img[i+1][j-1].rgbtRed + img[i+1][j].rgbtRed + img[i+1][j+1].rgbtRed;
             double avgR = red/6;
             
                 image[i][j].rgbtBlue = round(avgB);
@@ -168,13 +178,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
         else if (i == height && (j != 0 || j != width - 1))//bottom edge
         {
-            double blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j+1].rgbtBlue + image[i-1][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue;
+            double blue = img[i][j].rgbtBlue + img[i][j-1].rgbtBlue + img[i][j+1].rgbtBlue + img[i-1][j-1].rgbtBlue + img[i-1][j].rgbtBlue + img[i-1][j+1].rgbtBlue;
             double avgB = blue/6;
                 
-            double green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j+1].rgbtGreen + image[i-1][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen;
+            double green = img[i][j].rgbtGreen + img[i][j-1].rgbtGreen + img[i][j+1].rgbtGreen + img[i-1][j-1].rgbtGreen + img[i-1][j].rgbtGreen + img[i-1][j+1].rgbtGreen;
             double avgG = green/6;
                 
-            double red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i][j+1].rgbtRed + image[i-1][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed;
+            double red = img[i][j].rgbtRed + img[i][j-1].rgbtRed + img[i][j+1].rgbtRed + img[i-1][j-1].rgbtRed + img[i-1][j].rgbtRed + img[i-1][j+1].rgbtRed;
             double avgR = red/6;
             
                 image[i][j].rgbtBlue = round(avgB);
@@ -183,13 +193,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
         else if (j == 0 && (i != 0 || i != height))//left edge
         {
-            double blue = image[i][j].rgbtBlue + image[i-1][j].rgbtBlue + image[i+1][j].rgbtBlue + image[i-1][j+1].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j+1].rgbtBlue;
+            double blue = img[i][j].rgbtBlue + img[i-1][j].rgbtBlue + img[i+1][j].rgbtBlue + img[i-1][j+1].rgbtBlue + img[i][j+1].rgbtBlue + img[i+1][j+1].rgbtBlue;
             double avgB = blue/6;
                 
-            double green = image[i][j].rgbtGreen + image[i-1][j].rgbtGreen + image[i+1][j].rgbtGreen + image[i-1][j+1].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j+1].rgbtGreen;
+            double green = img[i][j].rgbtGreen + img[i-1][j].rgbtGreen + img[i+1][j].rgbtGreen + img[i-1][j+1].rgbtGreen + img[i][j+1].rgbtGreen + img[i+1][j+1].rgbtGreen;
             double avgG = green/6;
                 
-            double red = image[i][j].rgbtRed + image[i-1][j].rgbtRed + image[i+1][j].rgbtRed + image[i-1][j+1].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j+1].rgbtRed;
+            double red = img[i][j].rgbtRed + img[i-1][j].rgbtRed + img[i+1][j].rgbtRed + img[i-1][j+1].rgbtRed + img[i][j+1].rgbtRed + img[i+1][j+1].rgbtRed;
             double avgR = red/6;
             
                 image[i][j].rgbtBlue = round(avgB);
@@ -198,13 +208,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
         else if (j == width && (i != 0 || i != height))//right edge
         {
-            double blue = image[i][j].rgbtBlue + image[i-1][j].rgbtBlue + image[i+1][j].rgbtBlue + image[i-1][j-1].rgbtBlue + image[i][j-1].rgbtBlue + image[i+1][j-1].rgbtBlue;
+            double blue = img[i][j].rgbtBlue + img[i-1][j].rgbtBlue + img[i+1][j].rgbtBlue + img[i-1][j-1].rgbtBlue + img[i][j-1].rgbtBlue + img[i+1][j-1].rgbtBlue;
             double avgB = blue/6;
                 
-            double green = image[i][j].rgbtGreen + image[i-1][j].rgbtGreen + image[i+1][j].rgbtGreen + image[i-1][j-1].rgbtGreen + image[i][j-1].rgbtGreen + image[i+1][j-1].rgbtGreen;
+            double green = img[i][j].rgbtGreen + img[i-1][j].rgbtGreen + img[i+1][j].rgbtGreen + img[i-1][j-1].rgbtGreen + img[i][j-1].rgbtGreen + img[i+1][j-1].rgbtGreen;
             double avgG = green/6;
                 
-            double red = image[i][j].rgbtRed + image[i-1][j].rgbtRed + image[i+1][j].rgbtRed + image[i-1][j-1].rgbtRed + image[i][j-1].rgbtRed + image[i+1][j-1].rgbtRed;
+            double red = img[i][j].rgbtRed + img[i-1][j].rgbtRed + img[i+1][j].rgbtRed + img[i-1][j-1].rgbtRed + img[i][j-1].rgbtRed + img[i+1][j-1].rgbtRed;
             double avgR = red/6;
             
                 image[i][j].rgbtBlue = round(avgB);
@@ -213,13 +223,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
         else
         {
-            double blue = image[i-1][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
+            double blue = img[i-1][j-1].rgbtBlue + img[i-1][j].rgbtBlue + img[i-1][j+1].rgbtBlue + img[i][j-1].rgbtBlue + img[i][j].rgbtBlue + img[i][j+1].rgbtBlue + img[i+1][j-1].rgbtBlue + img[i+1][j].rgbtBlue + img[i+1][j+1].rgbtBlue;
             double avgB = blue/9;
                 
-            double green = image[i-1][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
+            double green = img[i-1][j-1].rgbtGreen + img[i-1][j].rgbtGreen + img[i-1][j+1].rgbtGreen + img[i][j-1].rgbtGreen + img[i][j].rgbtGreen + img[i][j+1].rgbtGreen + img[i+1][j-1].rgbtGreen + img[i+1][j].rgbtGreen + img[i+1][j+1].rgbtGreen;
             double avgG = green/9;
                 
-            double red = image[i-1][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed + image[i][j-1].rgbtRed + image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
+            double red = img[i-1][j-1].rgbtRed + img[i-1][j].rgbtRed + img[i-1][j+1].rgbtRed + img[i][j-1].rgbtRed + img[i][j].rgbtRed + img[i][j+1].rgbtRed + img[i+1][j-1].rgbtRed + img[i+1][j].rgbtRed + img[i+1][j+1].rgbtRed;
             double avgR = red/9;
             
             image[i][j].rgbtBlue = round(avgB);
