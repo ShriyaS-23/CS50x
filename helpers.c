@@ -88,143 +88,143 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         {
             if (i == 0 && j == 0)//top left corner
          {
-                int blue = image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
-                int avgB = blue/4;
+                double blue = image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
+                double avgB = blue/4;
                 
-                int green = image[i][j].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
-                int avgG = blue/4;
+                double green = image[i][j].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
+                double avgG = blue/4;
                 
-                int red = image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
-                int avgR = red/4;
+                double red = image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
+                double avgR = red/4;
                 
-                image[i][j].rgbtBlue = avgB;
-                image[i][j].rgbtGreen = avgG;
-                image[i][j].rgbtRed = avgR;
+                image[i][j].rgbtBlue = round(avgB);
+                image[i][j].rgbtGreen = round(avgG);
+                image[i][j].rgbtRed = round(avgR);
             
         }
         else if (i == 0 && j == width - 1)//top right corner
         {
             
-            int blue = image[i][j-1].rgbtBlue + image[i][j].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue;
-            int avgB = blue/4;
+            double blue = image[i][j-1].rgbtBlue + image[i][j].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue;
+            double avgB = blue/4;
                 
-            int green = image[i][j-1].rgbtGreen + image[i][j].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen;
-            int avgG = green/4;
+            double green = image[i][j-1].rgbtGreen + image[i][j].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen;
+            double avgG = green/4;
                 
-            int red = image[i][j-1].rgbtRed + image[i][j].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed;
-            int avgR = red/4;
+            double red = image[i][j-1].rgbtRed + image[i][j].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed;
+            double avgR = red/4;
                 
-            image[i][j].rgbtBlue = avgB;
-            image[i][j].rgbtGreen = avgG;
-            image[i][j].rgbtRed = avgR;
+            image[i][j].rgbtBlue = round(avgB);
+            image[i][j].rgbtGreen = round(avgG);
+            image[i][j].rgbtRed = round(avgR);
             
         }
         else if (i == height && j == 0)//bottom left corner
         {
-            int blue = image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue;
-            int avgB = blue/4;
+            double blue = image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue;
+            double avgB = blue/4;
                 
-            int green = image[i][j].rgbtGreen + image[i][j+1].rgbtGreen+ image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen;
-            int avgG = green/4;
+            double green = image[i][j].rgbtGreen + image[i][j+1].rgbtGreen+ image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen;
+            double avgG = green/4;
             
-            int red = image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed;
-            int avgR = red/4;
+            double red = image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed;
+            double avgR = red/4;
             
-            image[i][j].rgbtBlue = avgB;
-            image[i][j].rgbtGreen = avgG;
-            image[i][j].rgbtRed = avgR;
+            image[i][j].rgbtBlue = round(avgB);
+            image[i][j].rgbtGreen = round(avgG);
+            image[i][j].rgbtRed = round(avgR);
                 
         }
         else if (i == height && j == width - 1)//bottom right corner
         {
-            int blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j-1].rgbtBlue;
-            int avgB = blue/4;
+            double blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j-1].rgbtBlue;
+            double avgB = blue/4;
                 
-            int green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j-1].rgbtGreen;
-            int avgG = green/4;
+            double green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j-1].rgbtGreen;
+            double avgG = green/4;
                 
-            int red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j-1].rgbtRed;
-            int avgR = red/4;
+            double red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j-1].rgbtRed;
+            double avgR = red/4;
             
-            image[i][j].rgbtBlue = avgB;
-            image[i][j].rgbtGreen = avgG;
-            image[i][j].rgbtRed = avgR;
+            image[i][j].rgbtBlue = round(avgB);
+            image[i][j].rgbtGreen = round(avgG);
+            image[i][j].rgbtRed = round(avgR);
     
         }
         else if (i == 0 && (j != 0 || j != width - 1))//top edge
         {
-            int blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
-            int avgB = blue/6;
+            double blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
+            double avgB = blue/6;
                 
-            int green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
-            int avgG = green/6;
+            double green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
+            double avgG = green/6;
                 
-            int red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
-            int avgR = red/6;
+            double red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
+            double avgR = red/6;
             
-                image[i][j].rgbtBlue = avgB;
-                image[i][j].rgbtGreen = avgG;
-                image[i][j].rgbtRed = avgR;
+                image[i][j].rgbtBlue = round(avgB);
+                image[i][j].rgbtGreen = round(avgG);
+                image[i][j].rgbtRed = round(avgR);
         }
         else if (i == height && (j != 0 || j != width - 1))//bottom edge
         {
-            int blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j+1].rgbtBlue + image[i-1][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue;
-            int avgB = blue/6;
+            double blue = image[i][j].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j+1].rgbtBlue + image[i-1][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue;
+            double avgB = blue/6;
                 
-            int green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j+1].rgbtGreen + image[i-1][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen;
-            int avgG = green/6;
+            double green = image[i][j].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j+1].rgbtGreen + image[i-1][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen;
+            double avgG = green/6;
                 
-            int red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i][j+1].rgbtRed + image[i-1][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed;
-            int avgR = red/6;
+            double red = image[i][j].rgbtRed + image[i][j-1].rgbtRed + image[i][j+1].rgbtRed + image[i-1][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed;
+            double avgR = red/6;
             
-                image[i][j].rgbtBlue = avgB;
-                image[i][j].rgbtGreen = avgG;
-                image[i][j].rgbtRed = avgR;
+                image[i][j].rgbtBlue = round(avgB);
+                image[i][j].rgbtGreen = round(avgG);
+                image[i][j].rgbtRed = round(avgR);
         }
         else if (j == 0 && (i != 0 || i != height))//left edge
         {
-            int blue = image[i][j].rgbtBlue + image[i-1][j].rgbtBlue + image[i+1][j].rgbtBlue + image[i-1][j+1].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j+1].rgbtBlue;
-            int avgB = blue/6;
+            double blue = image[i][j].rgbtBlue + image[i-1][j].rgbtBlue + image[i+1][j].rgbtBlue + image[i-1][j+1].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j+1].rgbtBlue;
+            double avgB = blue/6;
                 
-            int green = image[i][j].rgbtGreen + image[i-1][j].rgbtGreen + image[i+1][j].rgbtGreen + image[i-1][j+1].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j+1].rgbtGreen;
-            int avgG = green/6;
+            double green = image[i][j].rgbtGreen + image[i-1][j].rgbtGreen + image[i+1][j].rgbtGreen + image[i-1][j+1].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j+1].rgbtGreen;
+            double avgG = green/6;
                 
-            int red = image[i][j].rgbtRed + image[i-1][j].rgbtRed + image[i+1][j].rgbtRed + image[i-1][j+1].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j+1].rgbtRed;
-            int avgR = red/6;
+            double red = image[i][j].rgbtRed + image[i-1][j].rgbtRed + image[i+1][j].rgbtRed + image[i-1][j+1].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j+1].rgbtRed;
+            double avgR = red/6;
             
-                image[i][j].rgbtBlue = avgB;
-                image[i][j].rgbtGreen = avgG;
-                image[i][j].rgbtRed = avgR;
+                image[i][j].rgbtBlue = round(avgB);
+                image[i][j].rgbtGreen = round(avgG);
+                image[i][j].rgbtRed = round(avgR);
         }
         else if (j == width && (i != 0 || i != height))//right edge
         {
-            int blue = image[i][j].rgbtBlue + image[i-1][j].rgbtBlue + image[i+1][j].rgbtBlue + image[i-1][j-1].rgbtBlue + image[i][j-1].rgbtBlue + image[i+1][j-1].rgbtBlue;
-            int avgB = blue/6;
+            double blue = image[i][j].rgbtBlue + image[i-1][j].rgbtBlue + image[i+1][j].rgbtBlue + image[i-1][j-1].rgbtBlue + image[i][j-1].rgbtBlue + image[i+1][j-1].rgbtBlue;
+            double avgB = blue/6;
                 
-            int green = image[i][j].rgbtGreen + image[i-1][j].rgbtGreen + image[i+1][j].rgbtGreen + image[i-1][j-1].rgbtGreen + image[i][j-1].rgbtGreen + image[i+1][j-1].rgbtGreen;
-            int avgG = green/6;
+            double green = image[i][j].rgbtGreen + image[i-1][j].rgbtGreen + image[i+1][j].rgbtGreen + image[i-1][j-1].rgbtGreen + image[i][j-1].rgbtGreen + image[i+1][j-1].rgbtGreen;
+            double avgG = green/6;
                 
-            int red = image[i][j].rgbtRed + image[i-1][j].rgbtRed + image[i+1][j].rgbtRed + image[i-1][j-1].rgbtRed + image[i][j-1].rgbtRed + image[i+1][j-1].rgbtRed;
-            int avgR = red/6;
+            double red = image[i][j].rgbtRed + image[i-1][j].rgbtRed + image[i+1][j].rgbtRed + image[i-1][j-1].rgbtRed + image[i][j-1].rgbtRed + image[i+1][j-1].rgbtRed;
+            double avgR = red/6;
             
-                image[i][j].rgbtBlue = avgB;
-                image[i][j].rgbtGreen = avgG;
-                image[i][j].rgbtRed = avgR;
+                image[i][j].rgbtBlue = round(avgB);
+                image[i][j].rgbtGreen = round(avgG);
+                image[i][j].rgbtRed = round(avgR);
         }
-        else if (i != 0 && i != height && j != 0 && j != width - 1)
+        else
         {
-            int blue = image[i-1][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
-            int avgB = blue/9;
+            double blue = image[i-1][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue;
+            double avgB = blue/9;
                 
-            int green = image[i-1][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
-            int avgG = green/9;
+            double green = image[i-1][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen;
+            double avgG = green/9;
                 
-            int red = image[i-1][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed + image[i][j-1].rgbtRed + image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
-            int avgR = red/9;
+            double red = image[i-1][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed + image[i][j-1].rgbtRed + image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed;
+            double avgR = red/9;
             
-            image[i][j].rgbtBlue = avgB;
-            image[i][j].rgbtGreen = avgG;
-            image[i][j].rgbtRed = avgR;
+            image[i][j].rgbtBlue = round(avgB);
+            image[i][j].rgbtGreen = round(avgG);
+            image[i][j].rgbtRed = round(avgR);
             
         }
         }
