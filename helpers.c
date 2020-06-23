@@ -11,11 +11,11 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             int b = image[i][j].rgbtBlue;
             int g = image[i][j].rgbtGreen;
             int r = image[i][j].rgbtRed;
-            
+
             double avg = (double)(b + g + r) / 3;
-            
+
             int average = round(avg);
-            
+
             image[i][j].rgbtBlue = average;
             image[i][j].rgbtGreen = average;
             image[i][j].rgbtRed = average;
@@ -34,15 +34,15 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             int b = image[i][j].rgbtBlue;
             int g = image[i][j].rgbtGreen;
             int r = image[i][j].rgbtRed;
-            
+
             double sRed = .393 * r + .769 * g + .189 * b;
             double sGreen = .349 * r + .686 * g + .168 * b;
             double sBlue = .272 * r + .534 * g + .131 * b;
-            
+
             int sepiaRed = round(sRed);
             int sepiaGreen = round(sGreen);
             int sepiaBlue = round(sBlue);
-            
+
             if (sepiaBlue > 255)
             {
                 sepiaBlue = 255;
@@ -55,7 +55,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             {
                 sepiaRed = 255;
             }
-            
+
             image[i][j].rgbtBlue = sepiaBlue;
             image[i][j].rgbtGreen = sepiaGreen;
             image[i][j].rgbtRed = sepiaRed;
@@ -83,7 +83,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE img[height][width];
-    
+
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -91,7 +91,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             img[i][j] = image[i][j];
         }
     }
-    
+
     for (int i = 0; i < height; i++)
     {
         for(int j = 0; j < width; j++)
@@ -107,11 +107,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 image[i][j].rgbtBlue = round(avgB);
                 image[i][j].rgbtGreen = round(avgG);
                 image[i][j].rgbtRed = round(avgR);
-            
+
         }
         else if (i == 0 && j == width - 1)//top right corner
         {
-            
+
             double avgB = (double)(img[i][j-1].rgbtBlue + img[i][j].rgbtBlue + img[i+1][j-1].rgbtBlue + img[i+1][j].rgbtBlue) / 4;
 
             double avgG = (double)(img[i][j-1].rgbtGreen + img[i][j].rgbtGreen + img[i+1][j-1].rgbtGreen + img[i+1][j].rgbtGreen) / 4;
@@ -121,7 +121,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = round(avgB);
             image[i][j].rgbtGreen = round(avgG);
             image[i][j].rgbtRed = round(avgR);
-            
+
         }
         else if (i == height && j == 0)//bottom left corner
         {
@@ -134,7 +134,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = round(avgB);
             image[i][j].rgbtGreen = round(avgG);
             image[i][j].rgbtRed = round(avgR);
-                
+
         }
         else if (i == height && j == width - 1)//bottom right corner
         {
@@ -147,7 +147,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = round(avgB);
             image[i][j].rgbtGreen = round(avgG);
             image[i][j].rgbtRed = round(avgR);
-    
+
         }
         else if (i == 0 && (j != 0 || j != width - 1))//top edge
         {
@@ -200,15 +200,15 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         else
         {
             double avgB = (double)(img[i-1][j-1].rgbtBlue + img[i-1][j].rgbtBlue + img[i-1][j+1].rgbtBlue + img[i][j-1].rgbtBlue + img[i][j].rgbtBlue + img[i][j+1].rgbtBlue + img[i+1][j-1].rgbtBlue + img[i+1][j].rgbtBlue + img[i+1][j+1].rgbtBlue) / 9;
-                
+
             double avgG = (double)(img[i-1][j-1].rgbtGreen + img[i-1][j].rgbtGreen + img[i-1][j+1].rgbtGreen + img[i][j-1].rgbtGreen + img[i][j].rgbtGreen + img[i][j+1].rgbtGreen + img[i+1][j-1].rgbtGreen + img[i+1][j].rgbtGreen + img[i+1][j+1].rgbtGreen) / 9;
-                
+
             double avgR = (double)(img[i-1][j-1].rgbtRed + img[i-1][j].rgbtRed + img[i-1][j+1].rgbtRed + img[i][j-1].rgbtRed + img[i][j].rgbtRed + img[i][j+1].rgbtRed + img[i+1][j-1].rgbtRed + img[i+1][j].rgbtRed + img[i+1][j+1].rgbtRed) / 9;
 
             image[i][j].rgbtBlue = round(avgB);
             image[i][j].rgbtGreen = round(avgG);
             image[i][j].rgbtRed = round(avgR);
-            
+
         }
         }
     }
