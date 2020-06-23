@@ -11,29 +11,29 @@ int main(int argc, char *argv[])
         printf("Usage: ./recover filename");
         return 1;
     }
-    
+
     FILE *memCard = fopen(argv[1], "r");
-    
+
     if (memCard == NULL)
     {
         printf("Error");
         return 1;
     }
-    
+
     int x = 512;
-    
+
     int counter = 0;
-    
+
     BYTE buffer[512];
-    
+
     char image[8];
-    
+
     FILE *jpg;
-    
+
     while(x == 512)
     {
         x = fread(buffer, sizeof(BYTE), 512, memCard);
-        
+
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             if (counter > 0)
@@ -57,15 +57,9 @@ int main(int argc, char *argv[])
             fwrite(buffer, sizeof(BYTE), 512, jpg);
         }
     }
-    
-    if (fread(buffer, sizeof(BYTE), 512, memCard) > 0)
-    {
-        int left = fread(buffer, sizeof(BYTE), 512, memCard);
-        fwrite(buffer, sizeof(BYTE), left, jpg);
-    }
-    
+
     fclose(memCard);
     fclose(jpg);
     return 0;
-    
+
 }
