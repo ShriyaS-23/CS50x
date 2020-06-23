@@ -6,15 +6,15 @@ typedef uint8_t BYTE;
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
+    if (argc != 2)//checking for 2 command line arguments
     {
         printf("Usage: ./recover filename");
         return 1;
     }
 
-    FILE *memCard = fopen(argv[1], "r");
+    FILE *memCard = fopen(argv[1], "r");//opening input file
 
-    if (memCard == NULL)
+    if (memCard == NULL)//checking if input file is empty
     {
         printf("Error");
         return 1;
@@ -30,16 +30,16 @@ int main(int argc, char *argv[])
 
     int x = x = fread(buffer, sizeof(BYTE), 512, memCard);
 
-    while(x == 512 || x == 1)
+    while (x == 512 || x == 1)
     {
-        if(feof(memCard))
+        if (feof(memCard))
         {
 
         }
 
-        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)//checking for start of jpg
         {
-            if (counter > 0)
+            if (counter > 0)//first jpg
             {
                 fclose(jpg);
                 sprintf(image, "%03i.jpg", counter);
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
                 counter ++;
             }
         }
-        else if (counter > 0)
+        else if (counter > 0)//middle of jpg
         {
             fwrite(buffer, sizeof(BYTE), 512, jpg);
         }
@@ -63,8 +63,8 @@ int main(int argc, char *argv[])
         x = fread(buffer, sizeof(BYTE), 512, memCard);
     }
 
-    fclose(memCard);
-    fclose(jpg);
+    fclose(memCard);//closing input file
+    fclose(jpg);//closing last output file
     return 0;
 
 }
