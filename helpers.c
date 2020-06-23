@@ -173,7 +173,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 image[i][j].rgbtGreen = round(avgG);
                 image[i][j].rgbtRed = round(avgR);
         }
-        else if (j == 0 && (i != 0 || i != height - 1))//left edge
+        else if (j == 0 && (i != 0 || i != height))//left edge
         {
             double avgB = (double)(img[i][j].rgbtBlue + img[i-1][j].rgbtBlue + img[i+1][j].rgbtBlue + img[i-1][j+1].rgbtBlue + img[i][j+1].rgbtBlue + img[i+1][j+1].rgbtBlue) / 6;
 
@@ -185,7 +185,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 image[i][j].rgbtGreen = round(avgG);
                 image[i][j].rgbtRed = round(avgR);
         }
-        else if (j == width - 1 && (i != 0 || i != height - 1))//right edge
+        else if (j == width - 1 && (i != 0 || i != height))//right edge
         {
             double avgB = (double)(img[i][j].rgbtBlue + img[i-1][j].rgbtBlue + img[i+1][j].rgbtBlue + img[i-1][j-1].rgbtBlue + img[i][j-1].rgbtBlue + img[i+1][j-1].rgbtBlue) / 6;
 
