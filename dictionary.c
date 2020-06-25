@@ -23,7 +23,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 17576;
+const unsigned int N = 17577;
 
 // Hash table
 node *table[N];
@@ -57,7 +57,7 @@ unsigned int hash(const char *word)
     char copy[3];
     copy[0] = tolower(word[0]);
     copy[1] = tolower(word[1]);
-    copy[1] = tolower(word[2]);
+    copy[2] = tolower(word[2]);
 
     int index = ((copy[0] - 65) * 676) + ((copy[1] - 65) * 26) + copy[2];
     return index;
