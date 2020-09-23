@@ -7,7 +7,8 @@
 
 #include "dictionary.h"
 
-#define HASHTABLE_SIZE 10000
+// Number of buckets in hash table
+const unsigned int N = 10000;
 
 // Defines struct for a node
 typedef struct node
@@ -36,14 +37,14 @@ int word_count = 0;
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
-    FILE *file = fopen(dictionary, "r");
-    if (file == NULL)
+    FILE *dic = fopen(dictionary, "r");
+    if (dic == NULL)
     {
         return false;
     }
 
     char word[LENGTH + 1];
-    while (fscanf(file, "%s", word) != EOF)
+    while (fscanf(dic, "%s", word) != EOF)
     {
         node *new_node = malloc(sizeof(node));
 
@@ -56,9 +57,9 @@ bool load(const char *dictionary)
         strcpy(new_node->word, word);
 
         int h = hash_index(new_node->word);
-        node *head = hashtable[h];
+        node *tmp = hashtable[h];
 
-        if (head == NULL)
+        if (tmp == NULL)
         {
             hashtable[h] = new_node;
             word_count++;
@@ -70,7 +71,7 @@ bool load(const char *dictionary)
             word_count++;
         }
     }
-    fclose(file);
+    fclose(dic);
     return true;
 }
 
@@ -111,14 +112,14 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    node *head = NULL;
-    node *cursor = head;
+    node *tmp = NULL;
+    node *cursor = tmp;
 
     while (cursor != NULL)
     {
-        node *temp = cursor;
+        node *x = cursor;
         cursor = cursor->next;
-        free(temp);
+        free(x);
     }
     return true;
 }
