@@ -112,19 +112,7 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    node *tmp = hasthable[i];
-    node *cursor = tmp;
-    node *x = tmp;
-    
-    while (cursor != NULL)
-    {
-        cursor = cursor->next;
-        free(x);
-        x = cursor;
-    }
-    
-    
-   /* node *tmp = NULL;
+     node *tmp = NULL;
     node *cursor = tmp;
 
     while (cursor != NULL)
@@ -133,5 +121,5 @@ bool unload(void)
         cursor = cursor->next;
         free(x);
     }
-    return true;*/
+    return true;
 }
