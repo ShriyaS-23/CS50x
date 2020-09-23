@@ -18,7 +18,7 @@ typedef struct node
 }
 node;
 
-node *hashtable[HASHTABLE_SIZE];
+node *hashtable[N];
 
 //hash function
 int hash_index(char *hash_this)
@@ -28,7 +28,7 @@ int hash_index(char *hash_this)
     {
         hash = (hash << 2) ^ hash_this[i];
     }
-    return hash % HASHTABLE_SIZE;
+    return hash % N;
 }
 
 // Initializes counter for words in dictionary
