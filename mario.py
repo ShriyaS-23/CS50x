@@ -6,4 +6,4 @@ for i in range(h):
         print(" ", end="")
     for j in range(i):  # printing bricks
         print("#", end="")
-    print  # moving to new line
+    print()  # moving to new line
