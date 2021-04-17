@@ -46,6 +46,14 @@ SELECT * FROM airports WHERE city = 'Fiftyville'; --id:8
 SELECT * FROM flights WHERE day = 29 AND month = 7 AND year = 2020 AND origin_airport_id = 8;
 SELECT * FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE day = 29 AND month = 7 AND year = 2020 AND origin_airport_id = 8);
 SELECT * FROM people WHERE passport_number IN (SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE day = 29 AND month = 7 AND year = 2020 AND origin_airport_id = 8));
+SELECT * FROM people WHERE phone_number = '(375) 555-8161';
+SELECT * FROM people WHERE phone_number = '(725) 555-3243';
+sqlite> SELECT * FROM passengers  WHERE passport_number = 5773159633; -- Ernest FLight
+SELECT * from flights WHERE id = 36; -- ERnest Flight
+SELECT * FROM airports WHERE city = 'Fiftyville';
+SELECT * FROM airports WHeRE id = 4; -- london airport
+SELECT * FROM passengers  WHERE passport_number = 3592750733; -- RUSSELL FLIGHT
+
 
 
 --SUSPECTS ATM
@@ -89,8 +97,13 @@ id | name | phone_number | passport_number | license_plate
 
 -- FINAL SUSPECT
 Ernest
+Russell
 
 
+--soft suspect (3/4)
+Bobby
+Madison
+Danielle
 
 -- SUSPECTS flight
 id | name | phone_number | passport_number | license_plate
@@ -119,7 +132,7 @@ id | name | phone_number | passport_number | license_plate
 676919 | Steven | (195) 555-4173 | 1151340634 | 5VFD6G0
 677698 | John | (016) 555-9166 | 8174538026 | 4468KVT
 682850 | Ethan | (594) 555-6254 | 2996517496 | NAW9653
-686048 | Ernest | (367) 555-5533 | 5773159633 | 94KL13X
+686048 | Ernest | (367) 555-5533 | 5773159633 | 94KL13X  ---- ERNEST
 710572 | Richard |  | 7894166154 | 20Q418R
 745650 | Sophia | (027) 555-1068 | 3642612721 | 13FNH73
 750165 | Daniel | (971) 555-6468 | 7597790505 | FLFN3W0
@@ -132,7 +145,7 @@ id | name | phone_number | passport_number | license_plate
 952462 | Christian |  | 2626335085 | 6CV51G1
 953679 | Doris | (066) 555-9701 | 7214083635 | M51FA04
 
-
+-- russell and ernest both in flight suspect list 
 
 
 
@@ -140,11 +153,43 @@ id | name | phone_number | passport_number | license_plate
 -- PHONE CALLER RECIEVER
 221 | (130) 555-0289 | (996) 555-8899 | 2020 | 7 | 28 | 51
 224 | (499) 555-9472 | (892) 555-8872 | 2020 | 7 | 28 | 36
-233 | (367) 555-5533 | (375) 555-8161 | 2020 | 7 | 28 | 45
+233 | (367) 555-5533 | (375) 555-8161 | 2020 | 7 | 28 | 45  ---- ERNEST is CALLER  ---- RECIEVER is Berthold
 234 | (609) 555-5876 | (389) 555-5198 | 2020 | 7 | 28 | 60
 251 | (499) 555-9472 | (717) 555-1342 | 2020 | 7 | 28 | 50
 254 | (286) 555-6063 | (676) 555-6554 | 2020 | 7 | 28 | 43
-255 | (770) 555-1861 | (725) 555-3243 | 2020 | 7 | 28 | 49
+255 | (770) 555-1861 | (725) 555-3243 | 2020 | 7 | 28 | 49 ---- Russell is caller   ---- RECIEVER is PHILIP
 261 | (031) 555-6622 | (910) 555-3251 | 2020 | 7 | 28 | 38
 279 | (826) 555-1652 | (066) 555-9701 | 2020 | 7 | 28 | 55
 281 | (338) 555-6650 | (704) 555-2131 | 2020 | 7 | 28 | 54
+
+
+-- ERNEST FLIGHT
+flight_id | passport_number | seat
+36 | 5773159633 | 4A
+
+id | origin_airport_id | destination_airport_id | year | month | day | hour | minute
+36 | 8 | 4 | 2020 | 7 | 29 | 8 | 20
+
+-- LONDON AIRPORT is destination
+
+-- RUSSELL FLIGHT
+flight_id | passport_number | seat
+18 | 3592750733 | 4C
+24 | 3592750733 | 2C
+54 | 3592750733 | 6C
+
+id | origin_airport_id | destination_airport_id | year | month | day | hour | minute
+18 | 8 | 6 | 2020 | 7 | 29 | 16 | 0
+24 | 7 | 8 | 2020 | 7 | 30 | 16 | 27
+54 | 8 | 5 | 2020 | 7 | 30 | 10 | 19
+
+-- RUSSELLS FLIGHTS ARE NOT ON THE DAY OF EVENT 
+-- THEREFORE ERNEST MUST BE SUSPECT
+
+
+--- Airports
+id | abbreviation | full_name | city
+8 | CSF | Fiftyville Regional Airport | Fiftyville
+
+id | abbreviation | full_name | city
+4 | LHR | Heathrow Airport | London
