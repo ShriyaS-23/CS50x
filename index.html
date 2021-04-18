@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+                let answer = document.querySelector('.correct');
+                answer.addEventListener('click', function() {
+                    answer.style.backgroundColor = 'green';
+                    document.querySelector('#result1').innerHTML = 'Correct!';
+               })
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                let wrong = document.querySelectorAll('.incorrect');
+                for (let i = 0; i < 4; i++)
+                {
+                    wrong[i].addEventListener('click', function() {
+                    wrong[i].style.backgroundColor = 'red';
+                    document.querySelector('#result1').innerHTML = 'Incorrect!';
+                    });
+                }
+            });
+
+
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelector('#sub').addEventListener('click', function(){
+                    let ans = document.querySelector('#freeRes');
+                    if (ans.value == 'Ada Lovelace' )
+                    {
+                        ans.style.backgroundColor = 'green';
+                        document.querySelector('#result2').innerHTML = 'Correct!';
+                    }
+                    else
+                    {
+                        ans.style.backgroundColor = 'red';
+                        document.querySelector('#result2').innerHTML = 'Incorrect!';
+                    }
+                })
+            });
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <h3>What is the tallest building in the world?</h3>
+
+                <button class = 'correct'>Burj Khalifa</button>
+                <button class = 'incorrect'>Empire State Building</button>
+                <button class = 'incorrect'>Shanghai Tower</button>
+                <button class = 'incorrect'>Trade Center</button>
+
+                <h4 id = 'result1'><h4>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Who is known as the first Computer Programmer?</h3>
+                <form onsubmit='return false'>
+                    <input type = 'text' placeholder = 'Enter Your Answer' id = freeRes autocomplete = 'off'>
+                    <input type = 'submit' id = 'sub'>
+                </form>
+
+                <h4 id = result2></h4>
+
+            </div>
+
+        </div>
+    </body>
+</html>
