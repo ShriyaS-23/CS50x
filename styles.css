@@ -1,0 +1,167 @@
+body
+{
+    background-color: #a8f6f7;
+}
+
+#title
+{
+    text-align: center;
+    font-family: 'Lucida Handwriting', cursive;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #75c2f0;
+    background-position: center;
+    padding: 2rem 2rem 2rem 2rem;
+    text-decoration: none;
+    color: black;
+}
+a:hover, a:visited, a:active, a:link
+{
+    text-decoration: none;
+    color: black;
+}
+
+.navBtn
+{
+    padding: 0.5rem 0.5rem 1rem 1rem;
+    background-color: #b6daf0;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#nav
+{
+    padding: 0rem 0.5rem 0.5rem 0.5rem;
+    background-color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.matter
+{
+    background-color: #ceb6f0;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+#homeTitle
+{
+    text-align: center;
+    vertical-align: middle;
+    padding: 7rem 2rem 2rem 2rem;
+}
+
+
+#homeImg
+{
+    float: left;
+    padding: 1rem 1rem 1rem 1rem;
+    vertical-align: middle;
+}
+
+footer
+{
+    background-color: #315b91;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    padding: 0.5rem 0.2rem 0.2rem 0.2rem;
+    text-align: center;
+}
+
+#abtImg
+{
+    float: right;
+    height: auto;
+    width: 25%;
+    padding: 1rem 1rem 1rem 1rem;
+
+}
+
+#abtText
+{
+    text-align: center;
+    vertical-align: middle;
+    padding: 10rem 2rem 2rem 2rem;
+}
+
+#backImg
+{
+    margin-left: 220px;
+    margin-right: 230px;
+    padding: 0rem 0rem 1rem 0rem;
+}
+
+#backMatter
+{
+    margin-left:10px;
+    margin-right: 10px;
+    background-color: #ceb6f0;
+    text-align: center;
+    padding: 1rem;
+
+}
+
+#achMatter
+{
+    margin-left:10px;
+    margin-right: 10px;
+    background-color: #ceb6f0;
+    text-align: center;
+    padding: 1rem;
+
+}
+#achImg1
+{
+    float: left;
+    width:46%;
+    padding:1rem 1rem 1rem 2rem;
+}
+
+#achImg2
+{
+    float:right;
+    width:47%;
+    padding:1rem 2rem 1rem 1rem;
+}
+
+.achText
+{
+    text-align: center;
+    list-style-position: inside;
+}
+
+.break
+{
+    padding: 0.5rem;
+}
+
+.btn-group
+{
+    padding:2rem 2rem 2rem 2rem;
+}
+
+#conMatter
+{
+    text-align: center;
+    background-color: #ceb6f0;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding:2rem 1rem 1rem 1rem;
+
+}
+
+.carousel slide
+{
+    height: 50%;
+    width: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5rem 5rem 5rem 5rem;
+
+}
