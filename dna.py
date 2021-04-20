@@ -1,7 +1,6 @@
 import csv
 import sys
 
-
 if len(sys.argv) < 3 or len(sys.argv) > 3:
     print('USAGE: python dna.py <database>.csv <sequence>.csv')
     sys.exit(1)
@@ -51,6 +50,6 @@ for item in data:
     if count == len(seqAns)-1:
         print(item['name'])
         sys.exit(0)
-    else:
-        print('No Match')
-        sys.exit(0)
+
+print('No Match')
+sys.exit(0)
