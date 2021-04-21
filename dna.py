@@ -1,55 +1,57 @@
-import csv
-import sys
+from csv import DictReader, reader
+from sys import argv
 
-if len(sys.argv) < 3 or len(sys.argv) > 3:
-    print('USAGE: python dna.py <database>.csv <sequence>.csv')
-    sys.exit(1)
+if len(argv) < 3:
+    print("USAGE --> python dna.py <database>.csv <sequence>.txt")
+    exit(1)
+    
+with open(argv[1]) as peoplefile:
+    people = reader(peoplefile)
+    for row in people:
+        dnaData = row
+        dnaData.pop(0)
+        break
 
-data = []
+with open(argv[2]) as seqfile:
+    seqreader = reader(seqfile)
+    for row in seqreader:
+        seqlist = row
 
-with open(sys.argv[1],'r') as database:
-    dataReader = csv.DictReader(database)
-    for row in dataReader:
-        data.append(row)
+seq = seqlist[0]
 
-with open(sys.argv[2], 'r') as sequence:
-    seqReader = csv.reader(sequence)
-    for row in seqReader:
-        seq = row[0]
+sequences = {}
 
+for item in dnaData:
+    sequences[item] = 1
 
-dnaSTR = set()
+for key in sequences:
+    length = len(key)
+    max = 0
+    temp = 0
+    for i in range(len(seq)):
+        while temp > 0:
+            temp -= 1
+            continue
 
-for item in data:
-    for key in item.keys():
-        if key != 'name':
-            dnaSTR.add(key)
+        if seq[i: i + length] == key:
+            while seq[i - length: i] == seq[i: i + length]:
+                temp += 1
+                i += length
 
-seqAns = {'name':0}
+            if temp > max:
+                max = temp
 
+    sequences[key] += max
 
-for STR in dnaSTR:
-    STRname = ''
-    STRcount = 0
-    i = 0
-    while i < len(seq):
-        maxSTR = 0
-        if STR == seq[i:(i+len(STR))]:
-            STRname = STR
-            STRcount += 1
-        if maxSTR < STRcount:
-            maxSTR = STRcount
-        i += 1
-    seqAns.update({STR: maxSTR})
+with open(argv[1], newline='') as peoplefile:
+    people = DictReader(peoplefile)
+    for person in people:
+        match = 0
+        for dna in sequences:
+            if sequences[dna] == int(person[dna]):
+                match += 1
+        if match == len(sequences):
+            print(person['name'])
+            exit(0)
 
-for item in data:
-    count = 0
-    for DNA,key in zip(seqAns,item):
-        if item[DNA] == str(seqAns[DNA]):
-            count += 1
-    if count == len(seqAns)-1:
-        print(item['name'])
-        sys.exit(0)
-
-print('No Match')
-sys.exit(0)
+    print("No match")
