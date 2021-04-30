@@ -210,7 +210,7 @@ def register():
         if password != request.form.get('confirmation'):
             return apology('password does not match confirmation' , 400)
 
-        userCheck = db.execute('SELECT * FROM users WHERE username = :username', username=username)
+        userCheck = db.execute('SELECT COUNT(username) FROM users WHERE username = :username', username=username)
         if userCheck:
             return apology ('username already exists', 200)
 
