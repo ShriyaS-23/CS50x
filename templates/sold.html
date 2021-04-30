@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+    <h6> You sold share(s) of ({{symbol}}) costing {{price | usd()}}. Your balance is {{cash | usd()}} <h6>
+
+{% endblock %}
