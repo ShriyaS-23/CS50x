@@ -210,9 +210,9 @@ def register():
         if password != request.form.get('confirmation'):
             return apology('password does not match confirmation' , 400)
 
-        userCheck = db.execute('SELECT COUNT(username) FROM users WHERE username = :username', username=username)
+        userCheck = db.execute('SELECT * FROM users WHERE username = :username', username=username)
         if userCheck:
-            return apology ('username already exists', 400)
+            return apology ('username already exists', 200)
 
         hash_val = generate_password_hash(password)
         db.execute('INSERT INTO users (username,hash) VALUES (?,?)', username, hash_val)
