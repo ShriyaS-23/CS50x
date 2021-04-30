@@ -204,10 +204,10 @@ def register():
         if not password:
             return apology('must provide password', 204)
 
-        if not request.form.get('confirm_password'):
+        if not request.form.get('confirmation'):
             return apology('must confirm password', 403)
 
-        if password != request.form.get('confirm_password'):
+        if password != request.form.get('confirmation'):
             return apology('password does not match confirmation' , 403)
 
         userCheck = db.execute('SELECT COUNT(username) FROM users WHERE username = :username', username=username)
