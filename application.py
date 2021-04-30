@@ -276,7 +276,7 @@ def sell():
 
         db.execute('UPDATE users SET cash=:final_cash WHERE id=:user_id', final_cash=final_cash, user_id=session['user_id'])
 
-        return redirect('/')
+        return render_template('/sold', symbol=sell_symbol, price=total_price, cash=final_cash)
 
 @app.route('/add-money', methods=['GET', 'POST'])
 @login_required
