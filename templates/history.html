@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions%}
+                <tr>
+                    <td>
+                        {{ transaction['symbol'] }}
+                    </td>
+                    <td>
+                        {{ transaction['name'] }}
+                    </td>
+                    <td>
+                        {% if transaction['type'] == 1 %}
+                            Buy
+                        {% else %}
+                            Sell
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if transaction['type'] == 1 %}
+                            {{ transaction['shares'] }}
+                        {% else %}
+                            -{{ transaction['shares'] }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ transaction['unit_price'] }}
+                    </td>
+                    <td>
+                        {{ transaction['total_price'] }}
+                    </td>
+                    <td>
+                        {{ transaction['date'] }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </tfooter>
+    </table>
+{% endblock %}
