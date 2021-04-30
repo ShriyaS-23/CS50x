@@ -81,7 +81,7 @@ def buy():
 
     if request.method == 'POST':
 
-        buy_symbol = request.form.get('buy_symbol')
+        buy_symbol = request.form.get('symbol')
         buy_share = request.form.get('buy_share')
 
         if not buy_symbol:
@@ -241,7 +241,7 @@ def sell():
     if request.method == 'POST':
 
         sell_symbol = request.form.get('sell_symbol')
-        sell_share = request.form.get('sell_share')
+        sell_share = request.form.get('share')
 
         if not sell_symbol:
             return apology('must provide symbol', 403)
