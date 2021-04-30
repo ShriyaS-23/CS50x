@@ -182,7 +182,7 @@ def quote():
         return render_template('quote.html')
 
     if request.method == 'POST':
-        quote_request = lookup(request.form.get('quote_symbol'))
+        quote_request = lookup(request.form.get('symbol'))
         if quote_request == None:
             return apology('invalid symbol', 400)
         return render_template('quoted.html', quote=quote_request)
