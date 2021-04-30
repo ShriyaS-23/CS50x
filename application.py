@@ -211,7 +211,7 @@ def register():
             return apology('password does not match confirmation' , 400)
 
         userCheck = db.execute('SELECT COUNT(username) FROM users WHERE username = :username', username=username)
-        if userCheck:
+        if userCheck != 0:
             return apology ('username already exists', 200)
 
         hash_val = generate_password_hash(password)
