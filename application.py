@@ -69,7 +69,7 @@ def index():
     conditions = zip(share_dic, range(len(share_dic)))
     cash = db.execute('SELECT cash FROM users WHERE id=:id', id=session['user_id'])
 
-    return render_template('index.html', shares=share_dic, holding=holding, conditions=conditions, cash=round(cash[0]['cash'],2))
+    return render_template('index.html', shares=share_dic, holding=holding, conditions=conditions, cash=round(cash[0]['cash'], 2))
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -120,7 +120,7 @@ def buy():
         date = day + '/' + month + '/' + year
 
         db.execute('INSERT INTO transactions (user_id, shares, symbol, name, unit_price, total_price, date, type) VALUES (?,?,?,?,?,?,?,?)',
-                    session['user_id'], buy_share, buy_symbol, buy_request['name'], unit_price, total_price, date, 1)
+                   session['user_id'], buy_share, buy_symbol, buy_request['name'], unit_price, total_price, date, 1)
 
         final_cash = float(user_cash[0]['cash']) - total_price
 
@@ -277,7 +277,7 @@ def sell():
         date = day + '/' + month + '/' + year
 
         db.execute('INSERT INTO transactions (user_id, shares, symbol, name, unit_price, total_price, date, type) VALUES (?,?,?,?,?,?,?,?)',
-                    session['user_id'], sell_share, sell_symbol, sell_request['name'], unit_price, total_price, date, 0)
+                   session['user_id'], sell_share, sell_symbol, sell_request['name'], unit_price, total_price, date, 0)
 
         final_cash = float(user_cash[0]['cash']) + total_price
 
