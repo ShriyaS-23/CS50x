@@ -55,9 +55,9 @@ def index():
         if transaction['symbol'] in share_dic and transaction['type'] == 1:
             share_dic[transaction['symbol']] += transaction['shares']
         elif transaction['symbol'] in share_dic and transaction['type'] == 0:
-           share_dic[transaction['symbol']] -= transaction['shares']
+            share_dic[transaction['symbol']] -= transaction['shares']
         else:
-           share_dic[transaction['symbol']] = transaction['shares']
+            share_dic[transaction['symbol']] = transaction['shares']
 
         if share_dic[transaction['symbol']] == 0:
             del share_dic[transaction['symbol']]
@@ -66,7 +66,7 @@ def index():
     for share in share_dic.keys():
         holding.append(lookup(share))
 
-    conditions = zip(share_dic,range(len(share_dic)))
+    conditions = zip(share_dic, range(len(share_dic)))
     cash = db.execute('SELECT cash FROM users WHERE id=:id', id=session['user_id'])
 
     return render_template('index.html', shares=share_dic, holding=holding, conditions=conditions, cash=round(cash[0]['cash'],2))
@@ -119,7 +119,8 @@ def buy():
 
         date = day + '/' + month + '/' + year
 
-        db.execute('INSERT INTO transactions (user_id, shares, symbol, name, unit_price, total_price, date, type) VALUES (?,?,?,?,?,?,?,?)', session['user_id'], buy_share, buy_symbol, buy_request['name'], unit_price, total_price, date, 1)
+        db.execute('INSERT INTO transactions (user_id, shares, symbol, name, unit_price, total_price, date, type) VALUES (?,?,?,?,?,?,?,?)',
+                    session['user_id'], buy_share, buy_symbol, buy_request['name'], unit_price, total_price, date, 1)
 
         final_cash = float(user_cash[0]['cash']) - total_price
 
@@ -128,13 +129,12 @@ def buy():
         return render_template('bought.html', price=total_price, symbol=buy_symbol, cash=final_cash)
 
 
-
 @app.route("/history")
 @login_required
 def history():
     """Show history of transactions"""
     user_transactions = db.execute('SELECT * FROM transactions WHERE user_id=:user_id', user_id=session['user_id'])
-    return render_template('history.html', transactions = user_transactions)
+    return render_template('history.html', transactions=user_transactions)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -201,7 +201,7 @@ def quote():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
-    if request.method ==  'GET':
+    if request.method == 'GET':
         return render_template('register.html')
 
     if request.method == 'POST':
@@ -218,11 +218,11 @@ def register():
             return apology('must confirm password', 400)
 
         if password != request.form.get('confirmation'):
-            return apology('password does not match confirmation' , 400)
+            return apology('password does not match confirmation', 400)
 
         userCheck = db.execute('SELECT COUNT(username) FROM users WHERE username = :username', username=username)
         if userCheck[0]['COUNT(username)'] != 0:
-            return apology ('username already exists', 400)
+            return apology('username already exists', 400)
 
         hash_val = generate_password_hash(password)
         db.execute('INSERT INTO users (username,hash) VALUES (?,?)', username, hash_val)
@@ -241,9 +241,9 @@ def sell():
         if transaction['symbol'] in share_dic and transaction['type'] == 1:
             share_dic[transaction['symbol']] += transaction['shares']
         elif transaction['symbol'] in share_dic and transaction['type'] == 0:
-           share_dic[transaction['symbol']] -= transaction['shares']
+            share_dic[transaction['symbol']] -= transaction['shares']
         else:
-           share_dic[transaction['symbol']] = transaction['shares']
+            share_dic[transaction['symbol']] = transaction['shares']
 
     if request.method == 'GET':
         return render_template('sell.html', shares=share_dic)
@@ -276,13 +276,15 @@ def sell():
 
         date = day + '/' + month + '/' + year
 
-        db.execute('INSERT INTO transactions (user_id, shares, symbol, name, unit_price, total_price, date, type) VALUES (?,?,?,?,?,?,?,?)', session['user_id'], sell_share, sell_symbol, sell_request['name'], unit_price, total_price, date, 0)
+        db.execute('INSERT INTO transactions (user_id, shares, symbol, name, unit_price, total_price, date, type) VALUES (?,?,?,?,?,?,?,?)',
+                    session['user_id'], sell_share, sell_symbol, sell_request['name'], unit_price, total_price, date, 0)
 
         final_cash = float(user_cash[0]['cash']) + total_price
 
         db.execute('UPDATE users SET cash=:final_cash WHERE id=:user_id', final_cash=final_cash, user_id=session['user_id'])
 
         return render_template('sold.html', symbol=sell_symbol, price=total_price, cash=final_cash)
+
 
 @app.route('/add-money', methods=['GET', 'POST'])
 @login_required
