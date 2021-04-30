@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set tmp = [0] %}
+            {% for symbol, x in conditions %}
+                <tr>
+                    <td>
+                        {{holding[x]['symbol']}}
+                    </td>
+                    <td>
+                        {{holding[x]['name']}}
+                    </td>
+                    <td>
+                        {{shares[symbol]}}
+                    </td>
+                    <td>
+                        {{holding[x]['price']}}
+                    </td>
+                    <td>
+                        {{holding[x]['price'] * shares[symbol]}}
+                        {% if tmp.append(tmp.pop()+ (holding[x]['price'] * shares[symbol])) %}{%endif%}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan='4'>CASH</td>
+                <td>{{cash}}</td>
+            </tr>
+        </tbody>
+        <tfooter>
+            <td colspan='4'></td>
+            <td>
+                {{ cash + tmp[0] | usd()}}
+            </td>
+        </tfooter>
+    </table>
+{% endblock %}
