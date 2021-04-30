@@ -231,18 +231,18 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
+    user_transactions = db.execute('SELECT * FROM transactions WHERE user_id=:id', id=session['user_id'])
+    share_dic = {}
+
+    for transaction in user_transactions:
+        if transaction['symbol'] in share_dic and transaction['type'] == 1:
+            share_dic[transaction['symbol']] += transaction['shares']
+        elif transaction['symbol'] in share_dic and transaction['type'] == 0:
+           share_dic[transaction['symbol']] -= transaction['shares']
+        else:
+           share_dic[transaction['symbol']] = transaction['shares']
+
     if request.method == 'GET':
-        user_transactions = db.execute('SELECT * FROM transactions WHERE user_id=:id', id=session['user_id'])
-        share_dic = {}
-
-        for transaction in user_transactions:
-            if transaction['symbol'] in share_dic and transaction['type'] == 1:
-                share_dic[transaction['symbol']] += transaction['shares']
-            elif transaction['symbol'] in share_dic and transaction['type'] == 0:
-               share_dic[transaction['symbol']] -= transaction['shares']
-            else:
-               share_dic[transaction['symbol']] = transaction['shares']
-
         return render_template('sell.html', shares=share_dic)
 
     if request.method == 'POST':
@@ -255,6 +255,9 @@ def sell():
 
         if not sell_share:
             return apology('must provide shares', 400)
+
+        if int(sell_share) > share_dic[sell_symbol]:
+            return apology('invalid no. of share', 400)
 
         sell_request = lookup(sell_symbol)
 
