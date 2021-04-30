@@ -95,7 +95,7 @@ def buy():
 
         if buy_request == None:
             return apology('invalid symbol', 400)
-            
+
         try:
             x = int(buy_share)
         except ValueError:
@@ -122,8 +122,8 @@ def buy():
 
         db.execute('UPDATE users SET cash=:final_cash WHERE id=:user_id', final_cash=final_cash, user_id=session['user_id'])
 
-        return render_template('bought.html', price=total_price, symbol=buy_symbol)
-        
+        return render_template('bought.html', price=total_price, symbol=buy_symbol, cash=final_cash)
+
 
 
 @app.route("/history")
