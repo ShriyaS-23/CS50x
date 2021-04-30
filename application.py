@@ -1,5 +1,6 @@
 import os
 import datetime
+import math
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
@@ -94,11 +95,12 @@ def buy():
 
         if buy_request == None:
             return apology('invalid symbol', 400)
+            
+        buy_share = float(buy_share)
 
-        shares = int(buy_share)
-        if buy_share - (int(buy_share)) != 0:
+        if buy_share - (math.floor(buy_share)) != 0.0:
             try:
-                int(buy_share)
+                x = int(buy_share)
             except ValueError:
                 return apology("must be a positive integer", 400)
 
