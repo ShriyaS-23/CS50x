@@ -97,7 +97,7 @@ def buy():
             return apology('invalid symbol', 400)
 
         try:
-            x = int(buy_share)
+            shares = int(buy_share)
         except ValueError:
             return apology("must be a positive integer", 400)
 
