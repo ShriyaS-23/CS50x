@@ -96,11 +96,11 @@ def buy():
             return apology('invalid symbol', 400)
 
         shares = int(buy_share)
-        if buy_share - (int(buy_share)) != 0
-        try:
-            int(buy_share)
-        except ValueError:
-            return apology("must be a positive integer", 400)
+        if buy_share - (int(buy_share)) != 0:
+            try:
+                int(buy_share)
+            except ValueError:
+                return apology("must be a positive integer", 400)
 
         user_cash = db.execute('SELECT cash FROM users WHERE id=:id', id=session['user_id'])
 
