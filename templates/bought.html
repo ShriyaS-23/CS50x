@@ -6,6 +6,6 @@
 
 {% block main %}
 
-    <h6> You bought share(s) of ({{symbol}}) costing {{price | usd()}}. Your balance is {{cash}} <h6>
+    <h6> You bought share(s) of ({{symbol}}) costing {{price | usd()}}. Your balance is {{cash | usd()}} <h6>
 
 {% endblock %}
