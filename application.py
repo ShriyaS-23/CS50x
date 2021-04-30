@@ -212,7 +212,7 @@ def register():
 
         userCheck = db.execute('SELECT COUNT(username) FROM users WHERE username = :username', username=username)
         if userCheck:
-            return apology ('username already exists', 200)
+            return apology ('username already exists', 400)
 
         hash_val = generate_password_hash(password)
         db.execute('INSERT INTO users (username,hash) VALUES (?,?)', username, hash_val)
