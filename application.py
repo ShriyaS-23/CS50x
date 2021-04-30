@@ -247,14 +247,14 @@ def sell():
 
     if request.method == 'POST':
 
-        sell_symbol = request.form.get('sell_symbol')
+        sell_symbol = request.form.get('symbol')
         sell_share = request.form.get('share')
 
         if not sell_symbol:
-            return apology('must provide symbol', 403)
+            return apology('must provide symbol', 400)
 
         if not sell_share:
-            return apology('must provide shares', 403)
+            return apology('must provide shares', 400)
 
         sell_request = lookup(sell_symbol)
 
