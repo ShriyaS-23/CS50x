@@ -199,20 +199,20 @@ def register():
         password = request.form.get('password')
 
         if not username:
-            return apology('must provide username', 204)
+            return apology('must provide username', 400)
 
         if not password:
-            return apology('must provide password', 204)
+            return apology('must provide password', 400)
 
         if not request.form.get('confirmation'):
-            return apology('must confirm password', 403)
+            return apology('must confirm password', 400)
 
         if password != request.form.get('confirmation'):
-            return apology('password does not match confirmation' , 403)
+            return apology('password does not match confirmation' , 400)
 
         userCheck = db.execute('SELECT COUNT(username) FROM users WHERE username = :username', username=username)
         if userCheck:
-            return apology ('username already exists', 403)
+            return apology ('username already exists', 200)
 
         hash_val = generate_password_hash(password)
         db.execute('INSERT INTO users (username,hash) VALUES (?,?)', username, hash_val)
