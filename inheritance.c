@@ -41,7 +41,7 @@ person *create_family(int generations)
 {
     // TODO: Allocate memory for new person
     person *x = malloc(sizeof(person));
-    if (n == NULL)
+    if (x == NULL)
     {
         return NULL;
     }
@@ -65,7 +65,7 @@ person *create_family(int generations)
         x->parents[0] = NULL;
         x->parents[1] = NULL;
 
-        // TODO: Randomly assign
+        // TODO: Randomly assign alleles
         x->alleles[0] = random_allele();
         x->alleles[1] = random_allele();
     }
@@ -78,11 +78,10 @@ person *create_family(int generations)
 void free_family(person *p)
 {
     // TODO: Handle base case
-    if (p == NULL)
-    {
+    if (p == NULL){
         return;
     }
-
+    
     // TODO: Free parents
     free_family(p->parents[0]);
     free_family(p->parents[1]);
