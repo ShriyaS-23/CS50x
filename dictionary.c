@@ -3,10 +3,10 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
-//#include <strings.h>
+#include <strings.h>
 #include <stdlib.h>
-#include <ctype.h>
 
+#include <ctype.h>
 #include "dictionary.h"
 
 unsigned int dicWord = 0;
