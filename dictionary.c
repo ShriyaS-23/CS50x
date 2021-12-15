@@ -1,11 +1,13 @@
 // Implements a dictionary's functionality
 
 #include <stdbool.h>
+#include <strings.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 #include "dictionary.h"
-
-unsigned int dicWord = 0;
-unsigned int hashC = 0;
 
 // Represents a node in a hash table
 typedef struct node
@@ -21,12 +23,17 @@ const unsigned int N = 5381;
 // Hash table
 node *table[N];
 
-// Returns true if word is in dictionary, else false
+// Words in the dictionary
+unsigned int dictionaryWords = 0;
+
+// Hash code from the word
+unsigned int hashCode = 0;
+
+// Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    // TODO
-    hashC = hash(word);
-    node *cursor = table[hashC];
+    hashCode = hash(word);
+    node *cursor = table[hashCode];
 
     while (cursor != NULL)
     {
@@ -40,7 +47,7 @@ bool check(const char *word)
 }
 
 // Hashes word to a number
-//From http://www.cse.yorku.ca/~oz/hash.html made by by dan bernstein
+//djb2 from http://www.cse.yorku.ca/~oz/hash.html reported by dan bernstein
 unsigned int hash(const char *word)
 {
     unsigned long hash = 5381;
@@ -53,10 +60,9 @@ unsigned int hash(const char *word)
     return hash % N;
 }
 
-// Loads dictionary into memory, returning true if successful, else false
+// Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
-    // TODO
     char word[LENGTH + 1];
     FILE *dic = fopen(dictionary, "r");
     if (dic != NULL)
@@ -67,11 +73,12 @@ bool load(const char *dictionary)
 
             if (n != NULL)
             {
-                hashC = hash(word);
+                hashCode = hash(word);
                 strcpy(n->word, word);
-                n->next = table[hashC];
-                table[hashC] = n;
-                dicWord ++;
+                n->next = table[hashCode];
+                table[hashCode] = n;
+                // free(n);
+                dictionaryWords ++;
             }
 
         }
@@ -84,26 +91,24 @@ bool load(const char *dictionary)
     return true;
 }
 
-// Returns number of words in dictionary if loaded, else 0 if not yet loaded
+// Returns number of words in dictionary if loaded else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TODO
-    return dicWord;
+    return dictionaryWords;
 }
 
-// Unloads dictionary from memory, returning true if successful, else false
+// Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    // TODO
     for (int i = 0; i < N; i++)
     {
         node *cursor = table[i];
 
         while (cursor)
         {
-            node *temp = cursor;
+            node *tmp = cursor;
             cursor = cursor->next;
-            free(temp);
+            free(tmp);
         }
 
         if (i == N - 1 && cursor == NULL)
