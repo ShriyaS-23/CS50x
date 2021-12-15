@@ -53,7 +53,7 @@ unsigned int hash(const char *word)
 
     while ((c = tolower(*word++)))
     {
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+        hash = ((hash << 5) + hash) + c;
     }
     return hash % N;
 }
@@ -111,7 +111,7 @@ bool unload(void)
             free(temp);
         }
 
-        if (i == N - 1 && cursor == NULL)
+        if (i == N-1 && cursor == NULL)
         {
             return true;
         }
