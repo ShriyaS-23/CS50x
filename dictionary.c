@@ -5,8 +5,8 @@
 #include <string.h>
 #include <strings.h>
 #include <stdlib.h>
-
 #include <ctype.h>
+
 #include "dictionary.h"
 
 unsigned int dicWord = 0;
@@ -21,7 +21,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 5381;
+const unsigned int N = 5390;
 
 // Hash table
 node *table[N];
