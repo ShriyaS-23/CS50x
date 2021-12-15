@@ -46,8 +46,8 @@ for STR in dnaSTR:
 
 for item in data:
     count = 0
-    for DNA,key in zip(seqAns,item):
-        if item[DNA] == str(seqAns[DNA]):
+    for dna,key in zip(seqAns,item):
+        if item[dna] == str(seqAns[dna]):
             count += 1
     if count == len(seqAns)-1:
         print(item['name'])
