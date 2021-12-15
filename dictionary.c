@@ -2,7 +2,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
 #include <strings.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -21,7 +21,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 5390;
+const unsigned int N = 5400;
 
 // Hash table
 node *table[N];
