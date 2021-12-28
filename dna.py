@@ -1,57 +1,60 @@
 from csv import reader, DictReader
-from sys import argv
+from sys import argv, exit
 
+seqs = {}
+
+#check input
 if len(argv) < 3:
-    print("Usage:dna.py sequence.txt database.csv")
-    exit()
+    print("Usage:", "python dna.py data.csv sequence.txt")
+    exit(1);
 
-with open(argv[2]) as DNAfile:
-    readDNA = reader(dnafile)
-    for row in readDNA:
-        DNArow = row
+# ma STR seq
+def get_max(dna, STR):
+    y = len(STR)
+    x = 0
+    ma = 0;
+    for x in range(len(dna)):
+        if dna[x:y] == STR:
+            temp = 0;
+            while dna[x:y] == STR:
+                temp += 1
+                x+= len(STR)
+                y+= len(STR)
+                if(temp > ma):
+                    ma = temp
+        else:
+            x+=1
+            y+=1
+    return ma
 
-DNA = DNArow[0]
 
-seq = {}
+with open(argv[2], 'r') as dnafile:
+    dna = dnafile.read()
 
-with open(argv[1]) as peoplefile:
-    readPeople = reader(peoplefile)
-    for row in readPeople:
-        DNAseq = row
-        DNAseq.pop(0)
+# read people
+with open(argv[1], "r") as peopleFile:
+    peopleReader = reader(peopleFile)
+    for row in peopleReader:
+        peopleRow = row
+        peopleRow.pop(0)
+        for item in peopleRow:
+            seqs[item] = 0;
         break
 
-for item in DNAseq:
-    seq[item] = 1
+for item in seqs:
+    ans = get_max(dna, item)
+    seqs[item] = ans
 
-for key in seq:
-    l = len(key)
-    tMax = 0
-    t = 0
-    for i in range(len(DNA)):
-        while t > 0:
-            t -= 1
-            continue
+# print people
+with open(argv[1], "r") as peopleFile:
+    people = DictReader(peopleFile)
+    for person in people:
+        c = 0
+        for item in seqs:
+            if int(person[item]) == seqs[item]:
+                c += 1
+        if c == len(seqs):
+            print(person["name"])
+            exit(0)
 
-        if DNA[i: i + l] == key:
-            while DNA[i - l: i] == DNA[i: i + l]:
-                t += 1
-                i += l
-
-            if t > tMax:
-                tMax = t
-
-    seq[key] += tMax
-
-with open(argv[1], newline='') as peoplefile:
-    readPeople = DictReader(peoplefile)
-    for person in readPeople:
-        match = 0
-        for DNA in seq:
-            if seq[DNA] == int(person[DNA]):
-                match += 1
-        if match == len(seq):
-            print(person['name'])
-            exit()
-
-    print("No match")
+    print("No Match")
