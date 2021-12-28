@@ -7,70 +7,55 @@ def main():
         print("Usage: python dna.py data.csv sequence.txt")
         exit(1)
 
-    STRs = []
-    profiles = []
+    seqs = []
+    people = []
 
-    # Read in database file - using `with` means we don't have to close the file
     with open(argv[1], mode="r") as database:
         reader = csv.DictReader(database)
-        # Populate list of Short Tandem Repeats (STRs)
-        STRs = reader.fieldnames[1:]
+        seqs = reader.fieldnames[1:]
         for row in reader:
-            # Add person to profiles
-            profiles.append(row)
+            people.append(row)
 
-    # Initialise dictionary for sequence file
-    seq_str_count = dict.fromkeys(STRs, 0)
+    seqCount = dict.fromkeys(seqs, 0)
 
-    # Read in sequence file
     with open(argv[2], mode="r") as sequence_file:
-        # Grab first line of txt file
         sequence = sequence_file.readline()
-        # Loop over every STR from the database
-        for STR in STRs:
-            # Update the Sequence STR dictionary with max amount of repeats
-            seq_str_count[STR] = find_repeats(sequence, STR)
+        for seq in seqs:
+            seqCount[seq] = find_repeats(sequence, seq)
 
-    # Check if any person has same amount of STR repeats as sequence
-    for profile in profiles:
-        match_count = 0
+    for person in people:
+        c = 0
 
-        for STR in STRs:
-            if int(profile[STR]) != seq_str_count[STR]:
+        for seq in seqs:
+            if int(person[seq]) != seqCount[seq]:
                 continue
-            match_count += 1
+            c += 1
 
-        if match_count == len(STRs):
-            print(profile['name'])
+        if c == len(seqs):
+            print(person['name'])
             exit(0)
 
     print("No match")
     exit(1)
 
 
-def find_repeats(sequence, STR):
-    # Number of bases in Short Tandem Repeat
-    L = len(STR)
+def find_repeats(sequence, seq):
+    l = len(seq)
 
-    max_repeats = 0
-    for i in range(len(sequence)):
-        # Initialise and reset repeat counter
-        repeats = 0
+    ma = 0
+    for x in range(len(sequence)):
+        count = 0
 
-        if sequence[i: i + L] == STR:
-            # Account for first match
-            repeats += 1
-            # Keep adding to count for consecutive repeats
-            while sequence[i: i + L] == sequence[i + L: i + (2 * L)]:
-                repeats += 1
-                # Shift reading frame (value of i resets in for loop so we can update it here)
-                i += L
+        if sequence[x: x + l] == seq:
+            count += 1
+            while sequence[x: x + l] == sequence[x + l: x + (2 * l)]:
+                count += 1
+                x += l
 
-        # Update max count if current repeat steak is greater than max
-        if repeats > max_repeats:
-            max_repeats = repeats
+        if count > ma:
+            ma = count
 
-    return max_repeats
+    return ma
 
 
 if __name__ == "__main__":
