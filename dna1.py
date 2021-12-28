@@ -52,6 +52,11 @@ for item in data:
     if count == len(seqAns)-1:
         print(item['name'])
         sys.exit(0)
+    
+    
+#test
+for i in range(0, len(STR)+1):
+    
 
 print('No Match')
 sys.exit(0)
