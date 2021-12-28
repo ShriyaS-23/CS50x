@@ -1,7 +1,6 @@
 from sys import argv, exit
 import csv
 
-
 def main():
     if len(argv) != 3:
         print("Usage: python dna.py data.csv sequence.txt")
