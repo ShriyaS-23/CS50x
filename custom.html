@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>A Day In History</title>
+    <link rel="stylesheet" href="static.css" />
+  </head>
+  <body>
+    <div class="title">
+      <h1>A Day In History</h1>
+      <div class="nav">
+        <a href="index.html" class="nav-items"> TODAY</a>
+        <a href="custom.html" class="nav-items"> CHOOSE DATE </a>
+      </div>
+    </div>
+    <div id="date">
+      <div id="form" class="banner">
+        <h2>Choose a Date</h2>
+        <form>
+          <input
+            type="number"
+            id="month"
+            placeholder="Month"
+            autocomplete="off"
+            min="1"
+            max="12"
+          />
+          <input
+            type="number"
+            id="day"
+            placeholder="Day"
+            autocomplete="off"
+            min="1"
+            max="31"
+          />
+          <input id="submit" type="submit" />
+        </form>
+      </div>
+      <div id="date-txt">
+        <div class="banner">
+          <h2 id="Ddate"></h2>
+        </div>
+
+        <p class="typeHead" id="eTitle"></p>
+        <div class="cont" id="Devents"></div>
+
+        <p class="typeHead" id="dTitle"></p>
+        <div class="cont" id="Ddeaths"></div>
+
+        <p class="typeHead" id="bTitle"></p>
+        <div class="cont" id="Dbirths"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Thank You For Visiting</p>
+    </div>
+
+    <script src="custom.js"></script>
+  </body>
+</html>
